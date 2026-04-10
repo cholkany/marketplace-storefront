@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "building-storefronts": {
+      "source": "medusajs/medusa-agent-skills",
+      "sourceType": "github",
+      "computedHash": "cdd94d4637a988d7e708ef9df9109b308d0e8cfe8fb602565301d045102bca43"
+    },
+    "storefront-best-practices": {
+      "source": "medusajs/medusa-agent-skills",
+      "sourceType": "github",
+      "computedHash": "e0a9b5a1ca1d4e5eb488cf4366a28a8317000ddaa2eb62a06a35b0c6b0f06085"
+    }
+  }
+}
