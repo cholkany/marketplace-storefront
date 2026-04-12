@@ -15,23 +15,22 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         {/* Top Bar */}
-        <div className="hidden md:flex items-center justify-between py-2 text-sm text-muted-foreground border-b border-border">
+        <div className="hidden md:flex items-center justify-between py-2 px-4 text-sm text-muted-foreground border-b border-border">
           <div className="flex items-center gap-4">
-            <span>Sell on Souq Market</span>
+            <Link href="/sell" className="hover:text-primary transition-colors">Sell on Souq Market</Link>
             <span>|</span>
             <span>Help & Support</span>
           </div>
           <div className="flex items-center gap-4">
-            <span>Track Order</span>
             <span>|</span>
             <span>Download App</span>
           </div>
         </div>
 
         {/* Main Navbar */}
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-16 gap-4 px-4 border-b border-border">
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
@@ -68,11 +67,14 @@ export function Navbar() {
           </Sheet>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="bg-primary rounded-lg px-3 py-1.5">
+          <Link href="/" className="flex items-center">
+            <div className="bg-primary rounded-sm px-3 py-1.5">
               <span className="font-serif font-bold text-xl text-primary-foreground">souq</span>
             </div>
-            <span className="hidden sm:block text-sm font-medium text-muted-foreground">market</span>
+            <div className="bg-secondary rounded-sm px-3 py-1.5">
+              <span className="font-serif font-bold text-xl text-primary-foreground">market</span>
+            </div>
+
           </Link>
 
           {/* Search Bar */}
@@ -154,7 +156,7 @@ export function Navbar() {
         )}
 
         {/* Category Navigation */}
-        <nav className="hidden md:flex items-center gap-6 h-12 text-sm">
+        <nav className="hidden md:flex items-center gap-6 h-12 text-sm px-4">
           <Link href="/products?category=electronics" className="hover:text-primary transition-colors">
             Electronics
           </Link>
