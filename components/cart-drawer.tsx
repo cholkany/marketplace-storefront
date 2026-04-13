@@ -64,7 +64,7 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
           </SheetDescription>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto py-4">
+        <div className="flex-1 overflow-y-auto py-4 px-2 sm:pb-4 pb-20">
           {cartItems.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center mb-4">
@@ -153,23 +153,23 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
         </div>
 
         {cartItems.length > 0 && (
-          <div className="border-t border-border pt-4 space-y-4">
+          <div className="border-t border-border pt-4 space-y-4 sm:pb-4 pb-20">
             <div className="space-y-2">
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm px-2">
                 <span className="text-muted-foreground">Subtotal</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm px-2">
                 <span className="text-muted-foreground">Shipping</span>
                 <span className="text-green-600">Calculated at meetup</span>
               </div>
               <Separator />
-              <div className="flex justify-between font-semibold text-lg">
+              <div className="flex justify-between font-semibold text-lg px-2">
                 <span>Total</span>
                 <span className="text-primary">${subtotal.toFixed(2)}</span>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 px-2">
               <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium h-12">
                 Contact Sellers to Arrange Pickup
               </Button>
@@ -182,7 +182,7 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
               </Button>
             </div>
             <p className="text-xs text-center text-muted-foreground">
-              Prices shown are for pickup/meetup. Arrange delivery directly with sellers.
+              Prices shown are for products. Arrange pickup directly with sellers.
             </p>
           </div>
         )}

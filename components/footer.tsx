@@ -6,11 +6,11 @@ import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-foreground text-background sm:block hidden">
       {/* Newsletter Section */}
       <div className="bg-primary py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          {/*<div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <h3 className="font-serif text-xl font-bold text-primary-foreground">
                 Subscribe to our newsletter
@@ -29,7 +29,7 @@ export function Footer() {
                 Subscribe
               </Button>
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
 

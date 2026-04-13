@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 import { Figtree, Cairo } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
+import { FooterMobile } from '@/components/footer-mobile';
 
-const figtree = Figtree({ 
+const figtree = Figtree({
   subsets: ["latin"],
   variable: '--font-figtree',
 });
 
-const cairo = Cairo({ 
+const cairo = Cairo({
   subsets: ["latin", "arabic"],
   variable: '--font-cairo',
 });
@@ -44,7 +47,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${figtree.variable} ${cairo.variable} font-sans antialiased`}>
-        {children}
+        <div className="min-h-screen bg-background">
+          <Navbar />
+          {children}
+          <Footer />
+          <FooterMobile />
+        </div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

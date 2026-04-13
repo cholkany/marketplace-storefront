@@ -30,6 +30,7 @@ import {
   ShoppingBag,
   Heart,
   ArrowRight,
+  StarIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -264,30 +265,23 @@ export default function ShopPublicPage() {
   });
 
   if (isLoading) return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <ShopSkeleton />
-      <Footer />
-    </div>
+    <ShopSkeleton />
   );
 
   if (notFound || !shop) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <div className="flex-1 flex items-center justify-center flex-col gap-4 py-24">
-          <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center">
-            <Store className="h-10 w-10 text-muted-foreground" />
-          </div>
-          <h1 className="text-2xl font-bold font-serif">Shop Not Found</h1>
-          <p className="text-muted-foreground">
-            The shop you&apos;re looking for doesn&apos;t exist or has been removed.
-          </p>
-          <Button asChild>
-            <Link href="/">Browse Marketplace</Link>
-          </Button>
+
+      <div className="flex-1 flex items-center justify-center flex-col gap-4 py-24">
+        <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center">
+          <Store className="h-10 w-10 text-muted-foreground" />
         </div>
-        <Footer />
+        <h1 className="text-2xl font-bold font-serif">Shop Not Found</h1>
+        <p className="text-muted-foreground">
+          The shop you&apos;re looking for doesn&apos;t exist or has been removed.
+        </p>
+        <Button asChild>
+          <Link href="/">Browse Marketplace</Link>
+        </Button>
       </div>
     );
   }
@@ -299,9 +293,8 @@ export default function ShopPublicPage() {
   const memberSince = shop.member_since ?? new Date().getFullYear().toString();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Navbar />
 
+    <>
       {/* ── BANNER ── */}
       <div className="relative w-full h-52 sm:h-64 bg-gradient-to-br from-primary/20 via-accent/30 to-primary/10 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
@@ -395,8 +388,8 @@ export default function ShopPublicPage() {
                 )}
                 <Button size="sm" asChild>
                   <Link href={`#products`}>
-                    <ShoppingBag className="h-4 w-4 mr-2" />
-                    Shop Now
+                    <StarIcon className="h-4 w-4 mr-2" />
+                    Rate Shop
                   </Link>
                 </Button>
               </div>
@@ -760,8 +753,6 @@ export default function ShopPublicPage() {
           </section>
         )}
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -56,81 +56,77 @@ export default function VendorSignup() {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30 flex flex-col">
-      <Navbar />
-      <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 bg-card p-8 rounded-xl border border-border shadow-sm">
-          <div className="text-center">
-            <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-              <Store className="h-6 w-6 text-primary" />
+    <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-card p-8 rounded-xl border border-border shadow-sm">
+        <div className="text-center">
+          <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+            <Store className="h-6 w-6 text-primary" />
+          </div>
+          <h2 className="mt-4 text-3xl font-bold font-serif text-foreground">
+            Create an Account
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Already have an account?{" "}
+            <Link
+              href="/vendor/login"
+              className="font-medium text-primary hover:underline"
+            >
+              Sign in
+            </Link>
+          </p>
+        </div>
+
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          {error && (
+            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md border border-destructive/20">
+              {error}
             </div>
-            <h2 className="mt-4 text-3xl font-bold font-serif text-foreground">
-              Create an Account
-            </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Already have an account?{" "}
-              <Link
-                href="/vendor/login"
-                className="font-medium text-primary hover:underline"
-              >
-                Sign in
-              </Link>
-            </p>
+          )}
+
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email address</Label>
+              <Input
+                id="email"
+                type="email"
+                autoComplete="email"
+                {...register("email")}
+                className={errors.email ? "border-destructive" : ""}
+              />
+              {errors.email && (
+                <p className="text-xs text-destructive">{errors.email.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                autoComplete="new-password"
+                {...register("password")}
+                className={errors.password ? "border-destructive" : ""}
+              />
+              {errors.password && (
+                <p className="text-xs text-destructive">{errors.password.message}</p>
+              )}
+              <p className="text-xs text-muted-foreground">At least 8 characters</p>
+            </div>
           </div>
 
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-            {error && (
-              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md border border-destructive/20">
-                {error}
-              </div>
-            )}
+          <Button
+            type="submit"
+            className="w-full text-primary-foreground h-12"
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating account..." : "Continue to Shop Setup"}
+          </Button>
 
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email address</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  {...register("email")}
-                  className={errors.email ? "border-destructive" : ""}
-                />
-                {errors.email && (
-                  <p className="text-xs text-destructive">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  autoComplete="new-password"
-                  {...register("password")}
-                  className={errors.password ? "border-destructive" : ""}
-                />
-                {errors.password && (
-                  <p className="text-xs text-destructive">{errors.password.message}</p>
-                )}
-                <p className="text-xs text-muted-foreground">At least 8 characters</p>
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full text-primary-foreground h-12"
-              disabled={isLoading}
-            >
-              {isLoading ? "Creating account..." : "Continue to Shop Setup"}
-            </Button>
-
-            <p className="text-center text-xs text-muted-foreground">
-              You&apos;ll set up your shop details in the next step.
-            </p>
-          </form>
-        </div>
+          <p className="text-center text-xs text-muted-foreground">
+            You&apos;ll set up your shop details in the next step.
+          </p>
+        </form>
       </div>
-      <Footer />
     </div>
   );
 }

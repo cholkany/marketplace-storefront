@@ -46,22 +46,22 @@ export function CategoryGrid() {
           View All
         </Link>
       </div>
-      <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
+      <div className="flex overflow-x-auto pb-4 gap-4 px-4 -mx-4 no-scrollbar md:grid md:grid-cols-8 md:gap-3 md:pb-0 md:px-0 md:mx-0 snap-x snap-mandatory">
         {categories.map((category) => (
           <Link
             key={category.id}
             href={`/products?category=${category.id}`}
-            className="group"
+            className="group flex-shrink-0 w-24 md:w-auto snap-start"
           >
             <div
               className={cn(
-                "aspect-square rounded-xl flex flex-col items-center justify-center gap-2 transition-all",
+                "aspect-square rounded-2xl flex flex-col items-center justify-center gap-2 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg",
                 colorMap[category.id]
               )}
             >
               {iconMap[category.id]}
             </div>
-            <p className="text-xs font-medium text-center mt-2 group-hover:text-primary transition-colors">
+            <p className="text-xs font-medium text-center mt-2 group-hover:text-primary transition-colors line-clamp-1">
               {category.name}
             </p>
           </Link>
