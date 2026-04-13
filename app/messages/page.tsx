@@ -220,98 +220,100 @@ export default function MessagesPage() {
   };
 
   return (
-    <main className="flex-1 container mx-auto px-4 py-6">
-      <div className="bg-card rounded-xl border border-border overflow-hidden h-[calc(100vh-200px)] min-h-[500px]">
-        <div className="flex h-full">
+    <main className="flex-1 w-full max-w-7xl mx-auto px-0 sm:px-4 py-0 sm:py-6">
+      <div className="bg-card sm:rounded-xl border-x sm:border border-border overflow-hidden h-[calc(100dvh-8rem)] sm:h-[calc(100vh-200px)]">
+        <div className="flex h-full w-full">
           {/* Conversations List */}
           <div
             className={cn(
-              "w-full md:w-80 lg:w-96 border-r border-border flex flex-col",
+              "w-full md:w-80 lg:w-96 border-r border-border flex flex-col h-full shrink-0",
               mobileShowChat && "hidden md:flex"
             )}
           >
             {/* Header */}
-            <div className="p-4 border-b border-border">
+            <div className="p-4 border-b border-border bg-card sticky top-0 z-10">
               <h1 className="font-serif text-xl font-bold mb-3">Messages</h1>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search conversations..."
-                  className="pl-9 bg-secondary border-none"
+                  className="pl-9 bg-secondary border-none h-9"
                 />
               </div>
             </div>
 
             {/* Conversation List */}
             <ScrollArea className="flex-1">
-              {conversations.map((conv) => (
-                <button
-                  key={conv.id}
-                  onClick={() => handleSelectConversation(conv)}
-                  className={cn(
-                    "w-full p-4 flex gap-3 hover:bg-secondary/50 transition-colors text-left border-b border-border",
-                    selectedConversation?.id === conv.id && "bg-secondary"
-                  )}
-                >
-                  <div className="relative">
-                    <Avatar className="h-12 w-12">
-                      <AvatarFallback className="bg-primary/20 text-primary font-semibold">
-                        {conv.seller.avatar}
-                      </AvatarFallback>
-                    </Avatar>
-                    {conv.seller.online && (
-                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-card" />
+              <div className="divide-y divide-border/50">
+                {conversations.map((conv) => (
+                  <button
+                    key={conv.id}
+                    onClick={() => handleSelectConversation(conv)}
+                    className={cn(
+                      "w-full p-4 flex gap-3 hover:bg-secondary/50 transition-colors text-left",
+                      selectedConversation?.id === conv.id && "bg-secondary"
                     )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-medium truncate">
-                        {conv.seller.name}
-                      </span>
-                      <span className="text-xs text-muted-foreground flex-shrink-0">
-                        {formatTime(conv.timestamp)}
-                      </span>
-                    </div>
-                    <p className="text-xs text-muted-foreground truncate mb-1">
-                      {conv.product.name}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm text-muted-foreground truncate">
-                        {conv.lastMessage}
-                      </p>
-                      {conv.unread > 0 && (
-                        <Badge className="bg-primary text-primary-foreground h-5 w-5 p-0 flex items-center justify-center text-xs">
-                          {conv.unread}
-                        </Badge>
+                  >
+                    <div className="relative shrink-0">
+                      <Avatar className="h-12 w-12">
+                        <AvatarFallback className="bg-primary/20 text-primary font-semibold">
+                          {conv.seller.avatar}
+                        </AvatarFallback>
+                      </Avatar>
+                      {conv.seller.online && (
+                        <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-card" />
                       )}
                     </div>
-                  </div>
-                </button>
-              ))}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-medium truncate">
+                          {conv.seller.name}
+                        </span>
+                        <span className="text-xs text-muted-foreground flex-shrink-0">
+                          {formatTime(conv.timestamp)}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground truncate mb-1">
+                        {conv.product.name}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm text-muted-foreground truncate-1">
+                          {conv.lastMessage}
+                        </p>
+                        {conv.unread > 0 && (
+                          <Badge className="bg-primary text-primary-foreground h-5 w-5 p-0 flex items-center justify-center text-xs">
+                            {conv.unread}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </ScrollArea>
           </div>
 
           {/* Chat Area */}
           <div
             className={cn(
-              "flex-1 flex flex-col",
+              "flex-1 flex flex-col h-full min-w-0",
               !mobileShowChat && "hidden md:flex"
             )}
           >
             {selectedConversation ? (
               <>
                 {/* Chat Header */}
-                <div className="p-4 border-b border-border flex items-center gap-3">
+                <div className="p-3 sm:p-4 border-b border-border flex items-center gap-3 bg-card sticky top-0 z-10">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="md:hidden"
+                    className="md:hidden -ml-2 h-9 w-9"
                     onClick={() => setMobileShowChat(false)}
                   >
                     <ArrowLeft className="h-5 w-5" />
                   </Button>
-                  <div className="relative">
-                    <Avatar className="h-10 w-10">
+                  <div className="relative shrink-0">
+                    <Avatar className="h-9 w-9 sm:h-10 sm:w-10">
                       <AvatarFallback className="bg-primary/20 text-primary font-semibold">
                         {selectedConversation.seller.avatar}
                       </AvatarFallback>
@@ -321,54 +323,54 @@ export default function MessagesPage() {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="font-semibold truncate">
+                    <h2 className="font-semibold truncate text-sm sm:text-base">
                       {selectedConversation.seller.name}
                     </h2>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">
                       {selectedConversation.seller.online
                         ? "Online"
                         : "Last seen 2h ago"}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon">
-                      <Phone className="h-5 w-5" />
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9">
+                      <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 hidden sm:flex">
                       <Video className="h-5 w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon">
-                      <MoreVertical className="h-5 w-5" />
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9">
+                      <MoreVertical className="h-4 w-4 sm:h-5 sm:w-5" />
                     </Button>
                   </div>
                 </div>
 
                 {/* Product Preview */}
-                <div className="px-4 py-3 border-b border-border bg-secondary/30">
+                <div className="px-4 py-2 border-b border-border bg-secondary/20">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center text-xs text-muted-foreground">
+                    <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-[10px] text-muted-foreground shrink-0 border border-border">
                       Item
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm truncate">
+                      <p className="font-medium text-xs sm:text-sm truncate">
                         {selectedConversation.product.name}
                       </p>
-                      <p className="text-primary font-semibold">
+                      <p className="text-primary font-bold text-xs sm:text-sm">
                         ${selectedConversation.product.price}
                       </p>
                     </div>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-shrink-0"
+                      className="flex-shrink-0 h-8 text-xs px-3"
                     >
-                      View Item
+                      View
                     </Button>
                   </div>
                 </div>
 
-                {/* Messages */}
-                <ScrollArea className="flex-1 p-4">
+                {/* Messages - h-0 flex-1 is critical for internal scrolling */}
+                <ScrollArea className="flex-1 h-0 p-4">
                   <div className="space-y-4">
                     {selectedConversation.messages.map((message) => (
                       <div
@@ -382,22 +384,22 @@ export default function MessagesPage() {
                       >
                         <div
                           className={cn(
-                            "max-w-[75%] rounded-2xl px-4 py-2",
+                            "max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-2 shadow-sm",
                             message.sender === "me"
                               ? "bg-primary text-primary-foreground rounded-br-md"
-                              : "bg-secondary rounded-bl-md"
+                              : "bg-secondary rounded-bl-md border border-border/50"
                           )}
                         >
-                          <p className="text-sm">{message.content}</p>
+                          <p className="text-sm leading-relaxed">{message.content}</p>
                           <div
                             className={cn(
-                              "flex items-center justify-end gap-1 mt-1",
+                              "flex items-center justify-end gap-1 mt-1 opacity-70",
                               message.sender === "me"
-                                ? "text-primary-foreground/70"
+                                ? "text-primary-foreground"
                                 : "text-muted-foreground"
                             )}
                           >
-                            <span className="text-xs">
+                            <span className="text-[10px]">
                               {message.timestamp.toLocaleTimeString([], {
                                 hour: "2-digit",
                                 minute: "2-digit",
@@ -416,53 +418,53 @@ export default function MessagesPage() {
                         </div>
                       </div>
                     ))}
-                    <div ref={messagesEndRef} />
+                    <div ref={messagesEndRef} className="h-4" />
                   </div>
                 </ScrollArea>
 
-                {/* Quick Actions */}
-                <div className="px-4 py-2 border-t border-border">
-                  <div className="flex gap-2 overflow-x-auto pb-2">
+                {/* Quick Actions - Scrollable */}
+                <div className="px-3 py-2 border-t border-border bg-card w-full">
+                  <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory w-full">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-shrink-0 text-xs"
+                      className="flex-shrink-0 text-[11px] h-8 rounded-full snap-start"
                     >
                       Is this still available?
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-shrink-0 text-xs"
+                      className="flex-shrink-0 text-[11px] h-8 rounded-full snap-start"
                     >
                       What&apos;s your best price?
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-shrink-0 text-xs gap-1"
+                      className="flex-shrink-0 text-[11px] h-8 rounded-full snap-start gap-1"
                     >
-                      <MapPin className="h-3 w-3" />
+                      <MapPin className="h-3 w-3 text-primary" />
                       Suggest meetup
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-shrink-0 text-xs gap-1"
+                      className="flex-shrink-0 text-[11px] h-8 rounded-full snap-start gap-1"
                     >
-                      <Clock className="h-3 w-3" />
+                      <Clock className="h-3 w-3 text-primary" />
                       Schedule pickup
                     </Button>
                   </div>
                 </div>
 
                 {/* Message Input */}
-                <div className="p-4 border-t border-border">
+                <div className="p-3 sm:p-4 border-t border-border bg-card">
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hidden sm:flex">
                       <Paperclip className="h-5 w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground">
                       <ImageIcon className="h-5 w-5" />
                     </Button>
                     <div className="flex-1 relative">
@@ -476,23 +478,28 @@ export default function MessagesPage() {
                             handleSendMessage();
                           }
                         }}
-                        className="pr-10 bg-secondary border-none"
+                        className="pr-10 bg-secondary/80 border-none h-10 rounded-full focus-visible:ring-1 focus-visible:ring-primary/20"
                       />
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8"
+                        className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 text-muted-foreground"
                       >
                         <Smile className="h-5 w-5" />
                       </Button>
                     </div>
                     <Button
                       size="icon"
-                      className="bg-primary hover:bg-primary/90"
+                      className={cn(
+                        "h-10 w-10 shrink-0 rounded-full transition-all",
+                        newMessage.trim()
+                          ? "bg-primary text-primary-foreground scale-100 shadow-lg shadow-primary/20"
+                          : "bg-secondary text-muted-foreground scale-95"
+                      )}
                       onClick={handleSendMessage}
                       disabled={!newMessage.trim()}
                     >
-                      <Send className="h-5 w-5 text-primary-foreground" />
+                      <Send className="h-5 w-5" />
                     </Button>
                   </div>
                 </div>
