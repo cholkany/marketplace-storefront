@@ -40,7 +40,7 @@ export default function VendorLogin() {
         password: data.password,
       });
 
-      router.push("/vendor/dashboard");
+      router.push("/vendor");
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Invalid credentials. Please try again.");

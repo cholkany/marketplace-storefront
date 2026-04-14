@@ -53,6 +53,9 @@ export function Navbar() {
                 <Link href="/messages" className="text-lg font-medium hover:text-primary">
                   Messages
                 </Link>
+                <Link href="/vendor" className="text-lg font-medium hover:text-primary">
+                  Vendor Dashboard
+                </Link>
                 <div className="border-t pt-4 mt-4">
                   <p className="text-sm text-muted-foreground mb-2">Categories</p>
                   <div className="flex flex-col gap-2">
@@ -107,7 +110,7 @@ export function Navbar() {
             </Button>
 
             {/* Messages */}
-            <Link href="/messages">
+            <Link href="/messages" className="hidden md:flex">
               <Button variant="ghost" size="icon" className="relative">
                 <MessageCircle className="h-5 w-5" />
                 <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-primary-foreground text-xs">
@@ -117,7 +120,7 @@ export function Navbar() {
             </Link>
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative" onClick={() => setCartOpen(true)}>
+            <Button variant="ghost" size="icon" className="relative hidden md:flex" onClick={() => setCartOpen(true)}>
               <ShoppingCart className="h-5 w-5" />
               <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-primary-foreground text-xs">
                 3
@@ -125,9 +128,11 @@ export function Navbar() {
             </Button>
 
             {/* User */}
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
-              <User className="h-5 w-5" />
-            </Button>
+            <Link href="/login" className="hidden md:flex">
+              <Button variant="ghost" size="icon" className="hidden sm:flex">
+                <User className="h-5 w-5" />
+              </Button>
+            </Link>
 
             {/* Sell Button */}
             <Button className="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground font-medium">

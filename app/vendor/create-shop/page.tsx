@@ -249,7 +249,7 @@ export default function CreateShopPage() {
         },
       });
 
-      router.push("/vendor/dashboard");
+      router.push("/vendor");
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Failed to create shop. Please try again.");

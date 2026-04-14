@@ -39,6 +39,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { NavVisibilityWrapper } from '@/components/layout/nav-visibility-wrapper';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,11 +49,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${figtree.variable} ${cairo.variable} font-sans antialiased`}>
-        <div className="min-h-screen bg-background">
-          <Navbar />
-          {children}
-          <Footer />
-          <FooterMobile />
+        <div className="min-h-screen bg-background flex flex-col">
+          <NavVisibilityWrapper>
+            {children}
+          </NavVisibilityWrapper>
         </div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
